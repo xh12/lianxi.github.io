@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+
+		#minImgs {
+			width: 400px;
+			height: 400px;
+			position: relative;
+			float: left;
+		}
+
+		#maxImgs {
+			width: 400px;
+			height: 400px;
+			position: relative;
+			left: 50px;
+			float: : left;
+			overflow: hidden;
+			display: none;
+		}
+
+		b {
+			width: 200px;
+			height: 200px;
+			background: dimgray;
+			opacity: 0.3;
+			float: left;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			display: none;
+		}
+
+		#imgs {
+			position: relative;
+			top: 0px;
+			left: 0px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="minImgs"><img src="../img/放大镜/min.jpg"><b></b></div>
+	<div id="maxImgs"><img src="../img/放大镜/max.jpg" id="imgs"></div>
+	<script>
+		var b = document.getElementsByTagName("b")[0];
+		var minImgs = document.getElementById("minImgs");
+		var maxImgs = document.getElementById("maxImgs");
+		var imgs = document.getElementById("imgs");
+		minImgs.onmousemove = function(e) {
+			b.style.display = "block";
+			maxImgs.style.display = "block";
+			var x = e.clientX - minImgs.offsetLeft - 100;
+			var y = e.clientY - minImgs.offsetTop - 100;
+			if (x < 0) {
+				x = 0;
+			} else if (x > minImgs.offsetWidth - b.offsetWidth) {
+				x = minImgs.offsetWidth - b.offsetWidth;
+			}
+			if (y < 0) {
+				y = 0;
+			} else if (y > minImgs.offsetHeight - b.offsetHeight) {
+				y = minImgs.offsetHeight - b.offsetHeight;
+			}
+			b.style.left = x + "px";
+			b.style.top = y + "px";
+			imgs.style.left = -2 * x + "px";
+			imgs.style.top = -2 * y + "px";
+		}
+	</script>
+</body>
+
+</html>
